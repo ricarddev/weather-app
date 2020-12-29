@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class WeatherService {
 
   URI: string = '';
-  apiKey = 'INTRODUCE UR API KEY FROM GOOGLE';
+  apiKey = 'INTRODUCE UR API KEY FROM OPEN WEATHER API';
   
 
   constructor(private http: HttpClient) {
