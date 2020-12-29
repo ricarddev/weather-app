@@ -1,0 +1,90 @@
+<div class="bg">
+  <img src="../../assets/morning.a81f0a40.jpg" alt="" />
+</div>
+<div *ngIf="night()"  class="bg">
+  <img src="../../assets/night.242ca2f3.jpg" alt="" />
+</div>
+<mat-toolbar>
+  <mat-icon id="menu" [matMenuTriggerFor]="menu">menu</mat-icon>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+  </mat-menu>
+  <span class="example-spacer"></span>
+  <form (submit)="searchWeather(city)">
+    <mat-form-field id="input" class="example-full-width">
+      <mat-label>City Name</mat-label>
+      <input #city matInput placeholder="Barcelona" ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" required />
+    </mat-form-field>
+    <button id="searchBtn" mat-raised-button color="primary">
+      <mat-icon  aria-hidden="false" aria-label="Example home icon"
+        >search</mat-icon
+      >
+    </button>
+  </form>
+</mat-toolbar>
+<header>
+  <div *ngIf="wth" class="info-wth">
+    <div class="inf">
+      <div class="image">
+        <svg class="clouds" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+          <path fill="rgba(255, 255, 255, 0.6)" d="M3.89 17.6c0-.99.31-1.88.93-2.65s1.41-1.27 2.38-1.49c.26-1.17.85-2.14 1.78-2.88.93-.75 2-1.12 3.22-1.12 1.18 0 2.24.36 3.16 1.09.93.73 1.53 1.66 1.8 2.8h.27c1.18 0 2.18.41 3.01 1.24s1.25 1.83 1.25 3c0 1.18-.42 2.18-1.25 3.01s-1.83 1.25-3.01 1.25H8.16c-.58 0-1.13-.11-1.65-.34s-.99-.51-1.37-.89c-.38-.38-.68-.84-.91-1.36s-.34-1.09-.34-1.66zm1.45 0c0 .76.28 1.42.82 1.96s1.21.82 1.99.82h9.28c.77 0 1.44-.27 1.99-.82.55-.55.83-1.2.83-1.96s-.27-1.42-.83-1.96c-.55-.54-1.21-.82-1.99-.82h-1.39c-.1 0-.15-.05-.15-.15l-.07-.49c-.1-.94-.5-1.73-1.19-2.35s-1.51-.93-2.45-.93c-.94 0-1.76.31-2.46.94-.7.62-1.09 1.41-1.18 2.34l-.07.42c0 .1-.05.15-.16.15l-.45.07c-.72.06-1.32.36-1.81.89-.46.53-.71 1.16-.71 1.89zm8.85-8.72c-.1.09-.08.16.07.21.43.19.79.37 1.08.55.11.03.19.02.22-.03.61-.57 1.31-.86 2.12-.86s1.5.27 2.1.81c.59.54.92 1.21.99 2l.09.64h1.42c.65 0 1.21.23 1.68.7s.7 1.02.7 1.66c0 .6-.21 1.12-.62 1.57s-.92.7-1.53.77c-.1 0-.15.05-.15.16v1.13c0 .11.05.16.15.16 1.01-.06 1.86-.46 2.55-1.19s1.04-1.6 1.04-2.6c0-1.06-.37-1.96-1.12-2.7-.75-.75-1.65-1.12-2.7-1.12h-.15c-.26-1-.81-1.82-1.65-2.47-.83-.65-1.77-.97-2.8-.97-1.4-.01-2.57.52-3.49 1.58z"/>
+        </svg>
+      </div>
+      <span>{{ wth.clouds.all }}%</span>
+    </div>
+    <div class="inf inf2">
+      <div class="image">
+        <svg class="wind" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+          <path fill="rgba(255, 255, 255, 0.8)" d="M3.1 16.97c0 .24.09.45.28.62.16.19.37.28.63.28H18.7c.29 0 .53.1.73.3.2.2.3.45.3.74s-.1.53-.3.72c-.2.19-.44.29-.74.29a1 1 0 0 1-.73-.29.76.76 0 0 0-.6-.26c-.25 0-.46.09-.64.26s-.27.38-.27.61c0 .25.09.46.28.63a2.8 2.8 0 0 0 3.97.02c.56-.54.83-1.19.83-1.97s-.28-1.44-.84-2a2.74 2.74 0 0 0-2-.84H4.01a.9.9 0 0 0-.64.26.83.83 0 0 0-.27.63zm0-3.28c0 .23.09.43.28.61.17.18.38.26.63.26h20.04c.78 0 1.45-.27 2.01-.82.56-.54.84-1.2.84-1.97s-.28-1.44-.84-1.99-1.23-.83-2.01-.83c-.77 0-1.42.27-1.95.8a.85.85 0 0 0-.27.67c0 .26.09.47.26.63.17.16.38.24.63.24.24 0 .45-.08.63-.24a.9.9 0 0 1 .7-.31c.29 0 .53.1.73.3.2.2.3.44.3.73s-.1.53-.3.72c-.2.19-.44.29-.73.29H4.01a.9.9 0 0 0-.91.91z"/>
+        </svg>        
+      </div>
+      <span>{{ wth.wind.speed }}m/s</span>
+    </div>
+    <div class="inf">
+      <div class="image">
+        <svg class="humidity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+          <path fill="rgba(255, 255, 255, .8)" d="M7.56 17.19c0-.88.24-1.89.72-3.03s1.1-2.25 1.86-3.31a36.4 36.4 0 0 1 4.06-4.67l.75-.72c.25.26.53.5.83.72.41.42 1.04 1.11 1.88 2.09s1.57 1.85 2.17 2.65c.71 1.01 1.32 2.1 1.81 3.25s.74 2.16.74 3.03a7.44 7.44 0 0 1-2.15 5.22 7.4 7.4 0 0 1-5.28 2.17c-1 0-1.95-.19-2.86-.57a7.23 7.23 0 0 1-4.53-6.83zm2.26-2.93c0 .83.17 1.49.52 1.99.35.49.88.74 1.59.74.72 0 1.25-.25 1.61-.74.35-.49.53-1.15.54-1.99a3.49 3.49 0 0 0-.54-2c-.35-.49-.89-.74-1.61-.74-.71 0-1.24.25-1.59.74-.35.5-.52 1.16-.52 2zm1.57 0v-.35l.02-.33c.01-.14.02-.25.05-.32l.09-.24c.04-.08.09-.15.15-.18a.44.44 0 0 1 .23-.06c.14 0 .25.04.33.12s.14.21.17.38a5.16 5.16 0 0 1 .07.97l-.01.52-.06.45c-.03.17-.09.3-.17.38s-.19.12-.33.12a.44.44 0 0 1-.23-.06.34.34 0 0 1-.15-.18 1.44 1.44 0 0 1-.14-.56l-.02-.32v-.34zm.59 7.75h1.32l4.99-10.74h-1.35l-4.96 10.74zm4.3-2.99c.01.84.2 1.5.55 2 .35.49.89.74 1.6.74.72 0 1.25-.25 1.6-.74.35-.49.52-1.16.53-2a3.43 3.43 0 0 0-.53-1.99c-.35-.49-.88-.74-1.6-.74-.71 0-1.25.25-1.6.74a3.36 3.36 0 0 0-.55 1.99zm1.57 0l.01-.52.06-.45c.03-.18.09-.3.17-.38s.19-.12.33-.12c.09 0 .17.02.24.06.07.04.12.1.16.19l.1.24c.03.07.04.18.05.32l.01.32v.69l-.01.32-.05.32-.1.24-.16.19-.24.06c-.14 0-.25-.04-.33-.12s-.14-.21-.17-.38a5.72 5.72 0 0 1-.07-.98z"/>
+        </svg>
+      </div>
+      <span>{{ wth.main.humidity }}%</span>
+    </div>
+  </div>
+</header>
+<div class="container" *ngIf="wth">
+  <div class="temp">
+    <span class="temperature">{{ wth.main.temp - 273.15 | number: "1.0-0" }}</span>
+    <div class="temp-info">
+      <span class="unity">℃</span>
+      <div class="min-high">
+        <div class="high">
+          <img src="../../assets/high.d70bbaa2.svg" alt="" />
+          <span> {{ wth.main.temp_max - 273.15 | number: "1.0-0" }}℃ </span>
+        </div>
+        <div class="min">
+          <img src="../../assets/low.61a481cf.svg" alt="" />
+          <span> {{ wth.main.temp_min - 273.15 | number: "1.0-0" }}℃ </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="wth" class="container location">
+  <span class="site">{{wth.name}}, {{wth.sys.country}} </span>
+  <span class="time">{{ todayNumber | date:'shortTime'}}, {{ todayNumber| date }} </span>
+  <span class="desc">{{wth.weather[0].description | titlecase}} </span>
+</div>
+<div *ngIf="wth" class="container icon">
+  <img src="../../assets/img/day.svg" alt="" *ngIf="wth.weather[0].description == 'clear sky' && !night() ">
+  <img src="../../assets/img/night.svg" alt="" *ngIf="wth.weather[0].description == 'clear sky' && night()">
+  <img src="../../assets/img/cloudy-day-2.svg" alt="" *ngIf="(wth.weather[0].description == 'few clouds' || wth.weather[0].description == 'scattered clouds') && !night()">
+  <img src="../../assets/img/cloudy-night-2.svg" alt="" *ngIf="(wth.weather[0].description == 'few clouds' || wth.weather[0].description == 'scattered clouds') && night()">
+  <img src="../../assets/img/cloudy.svg" alt="" *ngIf="wth.weather[0].description == 'overcast clouds' || wth.weather[0].description == 'broken clouds'  ">
+  <img src="../../assets/img/rainy-3.svg" alt="" *ngIf="wth.weather[0].description == 'light rain' ">
+  <img src="../../assets/img/rainy-5.svg" alt="" *ngIf="wth.weather[0].description == 'moderate rain' ">
+  <img src="../../assets/img/snowy-3.svg" alt="" *ngIf="wth.weather[0].description == 'light snow' ">
+  <img class="snow" src="../../assets/img/snowy-6.svg" alt="" *ngIf="wth.weather[0].description == 'snow'">
+  <img class="haze" src="../../assets/img/haze.svg" alt="" *ngIf="wth.weather[0].description == 'haze' || wth.weather[0].description == 'mist'">
+</div>
